@@ -8,6 +8,8 @@ scikit-learn = "*"
 ipykernel = "*"
 matplotlib = "*"
 pandas = "*"
+numpy = "*"
+ipympl = "*"
 
 [dev-packages]
 ipykernel = "*"
