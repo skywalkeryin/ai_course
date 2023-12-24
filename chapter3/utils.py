@@ -25,3 +25,20 @@ def plot_progress_kMeans(X, centroids, previous_centroids, idx, K, i):
         draw_line(centroids[j, :], previous_centroids[j, :])
     
     plt.title("Iteration number %d" %i)
+
+def draw_k_means(X, y_predict, predict_label, centroids):
+
+    fig = plt.figure()
+    label0 = plt.scatter(X.iloc[:, 0][y_predict==0], X.iloc[:, 1][y_predict==0])
+    label1 = plt.scatter(X.iloc[:, 0][y_predict==1], X.iloc[:, 1][y_predict==1])
+
+    plt.title(predict_label)
+    plt.xlabel("V1")
+    plt.ylabel("V2")
+
+    plt.legend((label0, label1), ("label0", "label1"))
+    # plot the center
+    # :,0 : 去获取第一维所有的行， 0 获取第一列
+    plt.scatter(centroids[:,0], centroids[:,1])
+
+    plt.show()
