@@ -184,13 +184,13 @@ class MyID3DecisionTreeClassifier:
 
         # if don't enough rows, just use it as leaf
         if len(X) <= self.min_samples_leaf:
-            return Leaf(X)
+            return Leaf(Y)
 
         # find the useful feature to split data based on different criterion
         max_gain, best_feature = self._find_best_spilt(X, Y)
 
         if max_gain == 0:
-            return Leaf(X)
+            return Leaf(Y)
 
         # if we reach here, we have found a useful feature to partition on
         branches_rows = self._partition(X, best_feature)
@@ -227,11 +227,8 @@ class MyID3DecisionTreeClassifier:
         row_value = row[self.feature_names.get_loc(best_feature)]
         if node.branches[row_value] != None:
             return self._find(row, node.branches[row_value])
-        
         return None
     
-
-
 # 获取叶节点数目
 def get_numL_leafs(node):
     num_leafs = 0
@@ -289,8 +286,6 @@ def plotTree(myTree, parentPt, nodeTxt):
             plotNode(secondDict.branches[key], (plotTree.xOff, plotTree.yOff),cntrPt, left_node)
             plotMidText((plotTree.xOff, plotTree.yOff), cntrPt, str(key))
     plotTree.yOff = plotTree.yOff + 1.0/plotTree.totalD
-
-
 
 
 def createPlot(inTree):
